@@ -1,0 +1,71 @@
+Documentation for blockchain.h 
+
+class Transaction:  
+	This is a class representing a transaction in the blockchain. 	
+	Attributes:
+     		fromAddress (string): The sender of this transaction 
+     		toAddress(string): the receiver of this transaction 
+     		amount(int):  The quantity of the asset being transferred
+     		signature(string): the signature of this transaction 
+    
+     	Method: CalculateHash
+		Caculate the SHA-256 hash of the transaction's contents.
+		Returns: (string) The computed hash.
+    	
+	Method: IsValid 
+		return true if this transaction is valid 
+
+class Block: 
+	This is a block in block chain 
+	Atttributes: 
+		timestamp(time_t): when this block be created
+		hash(string): the hash string of this block 
+		transactions(vector<Transaction>): transactions in this block 
+		nonce(int):  a pseudo-random number that is utilized as a counter during the process of mining
+		previousHash: the hash string of previous block 
+	
+	Method: Block 
+		initial set up data for Block 
+		timestamp(time_t): when this block be created
+		transactions(vector<Transaction>): transactions in this block 
+		previousHash(string): the hash string of previous block 
+	
+	Method: CalculateHash
+		Caculate the SHA-256 hash of the block contents.
+		Returns: (string) The computed hash.
+	Method: MineBlock
+		Finding a hash for block with satisfy the difficulty.
+		Parameters:
+		nDifficulty(int): The number of leading zeros required in the hash.
+
+class Blockchain: 
+	this is set of linked block 
+	Atttributes:
+		miningReward(int): incentive when user mined the hash satisfy requirement 
+		chain(vector<Block>): blocks of this blockchain 
+		pendingTransactions(vector<Transaction>): transactions that wating user to find satisfy hash. 
+	Method: Blockchain  
+		initial this blockchain with a empty block
+	
+	Method: MinePendingTransactions 
+		Confirm mining action, when the block has mined send reward for user 
+		Parameters:
+		miningRewardAddress(string): send reward to this address
+
+	Method: AddTransaction
+		push transaction to pendingTransaction. At this action, user's transaction has not been added to the block yet    
+		Parameters:
+		newT(Transaction): the signed transaction 
+	Method GetBalanceOfAddress 
+		
+		Parameters: 
+		Address(string): function will return balance of this address 
+
+	Method IsChainValid: 
+		check if this chain Legal 
+	
+
+		  	 
+		
+
+	
